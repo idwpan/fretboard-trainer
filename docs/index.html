@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fretboard Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎸 Fretboard Trainer</h1>
+
+  <div class="controls">
+    <label>
+      Volume Threshold
+      <input type="range" id="threshold" min="0.001" max="0.1" step="0.001" value="0.01" />
+    </label>
+
+    <label>
+    <input type="checkbox" id="include-incidentals" />
+    Include incidentals
+    </label>
+
+    <label>
+      <input type="checkbox" id="show-detected" />
+      Show detected note
+    </label>
+
+    <fieldset class="string-options">
+        <legend>Select Strings</legend>
+        <label><input type="checkbox" class="string-check" value="1" checked /> 1</label>
+        <label><input type="checkbox" class="string-check" value="2" checked /> 2</label>
+        <label><input type="checkbox" class="string-check" value="3" checked /> 3</label>
+        <label><input type="checkbox" class="string-check" value="4" checked /> 4</label>
+        <label><input type="checkbox" class="string-check" value="5" checked /> 5</label>
+        <label><input type="checkbox" class="string-check" value="6" checked /> 6</label>
+    </fieldset>
+
+    <label>
+      Fret Start:
+      <input type="number" id="fret-start" value="0" min="0" max="24" />
+    </label>
+    <label>
+      Fret End:
+      <input type="number" id="fret-end" value="12" min="0" max="24" />
+    </label>
+
+  </div>
+
+  <hr>
+
+  <div class="prompt" id="prompt">🎯 Waiting...</div>
+  <div class="result" id="result"></div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
