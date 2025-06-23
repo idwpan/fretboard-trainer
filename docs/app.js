@@ -71,8 +71,9 @@ function pickNewNote(notes) {
   } while (choice.note === lastTarget?.note);
   lastTarget = choice;
   targetNote = choice.note;
-  promptEl.textContent = `🎯 String ${choice.string}: Play ${choice.note}`;
+  promptEl.innerHTML = `String ${choice.string}<br>Play ${choice.note}`;
   resultEl.textContent = "";
+  resultEl.className = "result";
   awaitingSilence = false;
 }
 
@@ -83,7 +84,6 @@ async function startAudio() {
 
   const processor = audioContext.createScriptProcessor(2048, 1, 1);
   const threshold = () => parseFloat(thresholdSlider.value);
-  let buffer = [];
 
   processor.onaudioprocess = (e) => {
     const inputData = e.inputBuffer.getChannelData(0);
@@ -102,12 +102,12 @@ async function startAudio() {
     if (detectedNote) {
       if (showDetected.checked) {
         resultEl.textContent = `🎵 Detected: ${detectedNote}`;
-        resultEl.style.color = "orange";
+        resultEl.className = "result orange";
       }
 
       if (detectedNote === targetNote) {
         resultEl.textContent = `✅ Correct! You played ${detectedNote}`;
-        resultEl.style.color = "green";
+        resultEl.className = "result green";
         awaitingSilence = true;
       }
     }
@@ -116,6 +116,8 @@ async function startAudio() {
   input.connect(processor);
   processor.connect(audioContext.destination);
 }
+
+
 
 // Basic autocorrelation pitch detection
 function autoCorrelate(buf, sampleRate) {
